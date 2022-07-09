@@ -12,3 +12,5 @@ You will be graded on the exhaustiveness and quality of your unit tests, the dep
 
 Most of the code was just nested if-else statements. I refactored it into a function with proper function guards and 
 simple single if statements. While writing the tests I made sure to keep an old copy of the function and see if the old function returned the same result as the new refactored function.
+
+I also ran the .js file through the [standard javascript](https://standardjs.com/) formatter to enforce a consistent style.
