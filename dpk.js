@@ -1,9 +1,9 @@
-import crypto from 'crypto'
+const crypto = require('crypto');
 
 const TRIVIAL_PARTITION_KEY = '0'
 const MAX_PARTITION_KEY_LENGTH = 256
 
-export const _deterministicPartitionKey = (event) => {
+exports._deterministicPartitionKey = (event) => {
   const TRIVIAL_PARTITION_KEY = '0'
   const MAX_PARTITION_KEY_LENGTH = 256
   let candidate
@@ -30,7 +30,7 @@ export const _deterministicPartitionKey = (event) => {
   return candidate
 }
 
-export const deterministicPartitionKey = (event) => {
+exports.deterministicPartitionKey = (event) => {
   // If the event object is null or undefined, return the trivial key.
   if (!event) {
     return TRIVIAL_PARTITION_KEY
@@ -46,8 +46,9 @@ export const deterministicPartitionKey = (event) => {
   let candidate = event?.partitionKey || JSON.stringify(event)
 
   // If the candidate is longer than the maximum partition key length,
+  // Or if the event object has no partition key,
   // hash it and make it the candidate.
-  if (candidate.length > MAX_PARTITION_KEY_LENGTH) {
+  if (!event.partitionKey || candidate.length > MAX_PARTITION_KEY_LENGTH) {
     candidate = crypto.createHash('sha3-512').update(candidate).digest('hex')
   }
 

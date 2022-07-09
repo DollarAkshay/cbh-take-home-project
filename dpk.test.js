@@ -12,9 +12,9 @@ describe('deterministicPartitionKey', () => {
     expect(newKey).toBe('0')
   })
 
-  it('Returns the sha3-512 hash when given table data without partitionKey', () => {
+  it('Returns the sha3-512 hash when given event data without partitionKey', () => {
     const oldKey = _deterministicPartitionKey([1, 2, 3, {}])
-    const newKey = extractPartitionKey([1, 2, 3, {}])
+    const newKey = deterministicPartitionKey([1, 2, 3, {}])
 
     expect(oldKey).toEqual(newKey)
     expect(newKey).toMatch(/^[0-9a-f]{128}$/)
@@ -37,7 +37,7 @@ describe('deterministicPartitionKey', () => {
     const newKey = deterministicPartitionKey({ partitionKey: len257String })
 
     expect(oldKey).toEqual(newKey)
-    expect(trivialKey).toMatch(/^[0-9a-f]{128}$/)
+    expect(newKey).toMatch(/^[0-9a-f]{128}$/)
   })
 
   it('Returns the JSON.stringify if the event.partitionKey is not a string and the JSON string is less than or equal to 256', () => {
