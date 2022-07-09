@@ -21,7 +21,7 @@ You will be graded on the level of detail in each ticket, the clarity of the exe
  - Database is an SQL database
 
 ## Ticket 1
-**Title:** Generate a new table in the database to store the custom ids for each Agent.  
+**Title:** Generate a new table in the database to store the custom ids for each Agent.
 
 **Description:** We need a new table in the database that stores the custom ids for each Agent in a Facility and maps them to the internal agent id. So the composite primary key would be `FacilityId, AgentCustomId`, and there will also be a column `AgentInternalId` that stores the internal id for each Agent.
 
@@ -36,7 +36,7 @@ You will be graded on the level of detail in each ticket, the clarity of the exe
 
 **Title:** Expose an API endpoint that allows each Facility to change the custom ids for each Agent.
 
-**Description:** We need an API endpoint for each Facility to add/update/delete the custom ids for each Agent. The endpoint should be accessible at `/api/facilities/{facilityId}/agents/{agentId}/customId`. 
+**Description:** We need an API endpoint for each Facility to read/add/update/delete the custom ids for each Agent. The endpoint should be accessible at `/api/facilities/{facilityId}/agents/{agentId}/customId`. 
 A GET request should return the custom id for the Agent. A POST request for adding a new custom id should create a new row in the table, and a PUT request should update the existing row. A DELETE request should delete the row.
 
 **Acceptance Criteria:** 
@@ -60,14 +60,14 @@ A GET request should return the custom id for the Agent. A POST request for addi
 **Description:** We need to include the custom id for each Agent in the list of Shifts returned by `getShiftsByFacility`. The function would need to make another call to the database to get the custom id for each Agent given the Facility's id and the Agent's internal id.
 
 **Acceptance Criteria:** 
-- The function should return a list of Shifts with the custom id for each Agent included in the metadata
+- The function should return a list of shifts with the custom id for each Agent included in the metadata
 
 **Time Estimate:** 1 hour
 
 
 ## Ticket 4
 
-**Title*:** The `generateReport` function should include the custom id for each Agent.
+**Title:** The `generateReport` function should include the custom id for each Agent.
 
 **Description:** We need to include the custom id for each Agent in the report. No aditional calls to the database are needed since the function already has access to the list of Shifts provided by `getShiftsByFacility` which includes the custom id for each Agent.
 
